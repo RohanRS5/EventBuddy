@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdminDashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<script>
+    async function createtasks() {
+        let url = "http://localhost:8001/events/";
+        var ename = document.getElementById("eventname").value;
+        var edescription = document.getElementById("eventdescription").value;
+        var evenue = document.getElementById("eventvenue").value;
+        var etime = document.getElementById("eventtime").value;
+        var edate = document.getElementById("eventdate").value;
+
+    
+
+    await axios.post(
+      url, {
+      eventName: ename,
+      eventDescription: edescription,
+      eventVenue: evenue,
+      eventTime: etime,
+      eventDate: edate
+    }
+    )
+
+    .then((res) => {
+        console.log(res);
+        console.log("Signup Successful.")
+        window.location.assign("AdminDashboard.html");
+      })
+      .catch((err) => { console.error(err) })
+  }
+</script>
+
+<body>
+    <!-- navbar -->
+
+    <section class="header">
+
+        <!-- Navbar Starts -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+            <a class="navbar-brand" href="./Dashboard.html">EventBuddy</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="#">Home <span class="sr-only"></span></a>
+                </div>
+            </div>
+
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <button id="btn-new-task" type="submit" class="btn  btn-outline-light rounded-pill" style="background-color: #de5499"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal">Create Event</button>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="./AdminLogin.html">Logout</a>
+                </li>
+            </ul>
+            </div>
+
+
+            <!-- Navbar Ends -->
+            </div>
+    </section>
+
+
+    </nav>
+
+    <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Create Event</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Event Name</label>
+                                <input type="text" class="form-control" id="eventname" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Event Description</label>
+                                <input type="text" class="form-control" id="eventdescription" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Event Venue</label>
+                                <input type="text" class="form-control" id="eventvenue" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Event Time</label>
+                                <input type="text" class="form-control" id="eventtime" placeholder="11:00 am">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Event Date</label>
+                                <input type="text" class="form-control" id="eventdate" placeholder="yyyy-mm-dd">
+                            </div>
+                        </form> <br>
+                        <button id="btn-login" type="submit" class="btn btn-danger btn-outline-light btn-md rounded-pill"
+                            onClick="createtasks()">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="event-grid">
+        <div class="container">
+            <div id="event-grid" class="row row-cols-1 row-cols-md-3 g-4">
+
+            </div>
+        </div>
+    </section>
+    <!-- <section id="footer">
+    <div class="container">
+      <footer>
+        <ul class="nav justify-content-center border-bottom">
+          <li class="nav-item"><a href="./index.html" class="nav-link text-muted">Home</a></li>
+          <li class="nav-item"><a href="#" class="nav-link text-muted">About</a></li>
+          <li class="nav-item"><a href="#" class="nav-link text-muted">Contact Us</a></li>
+        </ul>
+        <p class="text-center text-muted">&copy; 2022 easyDone</p>
+      </footer>
+    </div>
+  </section> -->
+
+
+    <!-- Javscripts -->
+    <script src="./scripts/fetchevents.js"></script>
+    <!-- Javascript CDNs Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

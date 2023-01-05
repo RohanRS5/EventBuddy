@@ -1,6 +1,6 @@
 # EventBuddy
 
-This Project is still in development.
+
 
 
 It consists
